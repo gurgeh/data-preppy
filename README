@@ -6,6 +6,8 @@ I need to write better documentation for this, but for now you sometimes need to
 
 For now it is _Python 2.7_ only. I gratefully accept pull requests to fix this and other issues.
 
+Depends on numpy, scikit-learn, a little bit on pandas and optionally sknn (a neural network for scikit-learn).
+
 ## Quick usage
 
     ./summarize_csv.py table.csv  # This will calculate and write stats (including unicode sparklines) to stdout. Paste the stats to stat.txt or somethings
