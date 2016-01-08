@@ -16,17 +16,17 @@ Depends on numpy, scikit-learn, a little bit on pandas and optionally sknn (a ne
     ./csv_fix.py stat.txt filtered_table.csv fixed_table.csv  # impute standard values in empty cells, split category fields to several boolean fields
 
 ## Other files
-+add_columns.py - Take two or more CSV files with equal amount of rows and add the columns
-+add_rows.py - Add rows of two CSV files with same headers.
-+cluster_csv.py - Cluster rows in CSV and add a cluster group column to the rows. Can be useful to get a "holistic" view of each row.
-+convert_coords.py - Convert sweref coords to GPS. Not really similar to the other tools.
-+dict_merge.py - Run through a CSV and replace cells via translation dict.
-+filter_column_names.py - Remove fields from CSV by name
-+kill_outliers.py - Run after summarize_csv if you want to remove (presumably broken) rows with different field types than the rest.
-+merge_csv.py - Merge two CSV file according to an ID column. Like a join.
-+metrics.py - Calculate and graph performance metrics for classification
-+predict.py - Some prediction methods
-+smart_csv.py - The class used to read CSVs in the other files. Guesses encoding, delimiter, etc.
-+split_csv.py - Split CSV into training and test
++ add_columns.py - Take two or more CSV files with equal amount of rows and add the columns
++ add_rows.py - Add rows of two CSV files with same headers.
++ cluster_csv.py - Cluster rows in CSV and add a cluster group column to the rows. Can be useful to get a "holistic" view of each row.
++ convert_coords.py - Convert sweref coords to GPS. Not really similar to the other tools.
++ dict_merge.py - Run through a CSV and replace cells via translation dict.
++ filter_column_names.py - Remove fields from CSV by name
++ kill_outliers.py - Run after summarize_csv if you want to remove (presumably broken) rows with different field types than the rest.
++ merge_csv.py - Merge two CSV file according to an ID column. Like a join.
++ metrics.py - Calculate and graph performance metrics for classification
++ predict.py - Some prediction methods
++ smart_csv.py - The class used to read CSVs in the other files. Guesses encoding, delimiter, etc.
++ split_csv.py - Split CSV into training and test
 
 
