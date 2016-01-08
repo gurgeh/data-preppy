@@ -10,7 +10,7 @@ Depends on numpy, scikit-learn, a little bit on pandas and optionally sknn (a ne
 
 ## Quick usage
 
-    ./summarize_csv.py table.csv  # This will calculate and write stats (including unicode sparklines) to stdout. Paste the stats to stat.txt or somethings
+    ./summarize_csv.py table.csv  # This will calculate and write stats (including unicode sparklines) to stdout. Paste the stats to stat.txt or something
     # Then add "+" in front of the fields that you want to keep
     ./filter.py stat.txt table.csv filtered_table.csv # filter columns
     ./csv_fix.py stat.txt filtered_table.csv fixed_table.csv  # impute standard values in empty cells, split category fields to several boolean fields
