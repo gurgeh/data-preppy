@@ -23,12 +23,13 @@ class ClusterCSV:
         # self.df.drop(self.df.columns[[-2, -1]], axis=1, inplace=True)
 
         self.dfmin = self.df.min()
-        self.dfmax = self.df.max()
+        self.dfrange = self.df.max() - self.dfmin
         # olddf = self.df.copy()
         self.df -= self.dfmin
-        self.df /= self.dfmax
+        self.df /= self.dfrange + 0.00001
         print 'clustering in %d clusters' % nr_clusters
         self.mb = cluster.KMeans(nr_clusters, precompute_distances=True, n_jobs=-1, verbose=True)
+
         self.mb.fit(self.df.values)
 
         for c in self.mb.cluster_centers_:

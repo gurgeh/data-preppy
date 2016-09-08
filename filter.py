@@ -1,5 +1,7 @@
 import csv
+import smart_csv
 import sys
+
 
 column_filename = sys.argv[1]
 columns = []
@@ -15,7 +17,7 @@ def filter_columns(colname, incsvname, outcsvname):
 
     with open(incsvname, 'rb') as incsvfile:
         with open(outcsvname, 'wb') as outcsvfile:
-            csvreader = csv.reader(incsvfile)
+            csvreader,_, _ = smart_csv.csv_open(open(incsvname)) # csv.reader(incsvfile)
             csvwriter = csv.writer(outcsvfile)
             headers = csvreader.next()
             headerline = [headers[c] for c in columns]
