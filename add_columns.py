@@ -49,17 +49,23 @@ def add_csv(incsv_name_base, incsv_name_new, outcsv_name, new_loc, id_col=0):
         add_columns(incsv_name_base, outcsv_name, new_loc, headers, match_id)
 
 
-def add_csv_rows(incsv_name_base, incsv_name_new, outcsv_name, new_loc, id_col=0):
+def add_csv_rows(incsv_name_base, incsv_name_new, outcsv_name, new_loc=-1, id_col=-1):
     new_loc = int(new_loc)
     id_col = int(id_col)
     with open(incsv_name_base) as inf1:
         cin1 = csv.reader(inf1)
         headers1 = cin1.next()
+        if new_loc == -1:
+            new_loc = len(headers1)
         with open(incsv_name_new) as inf2:
             cin2 = csv.reader(inf2)
             headers2 = cin2.next()
-            print 'id_col is', headers2[id_col]
-            del headers2[id_col]
+            if id_col == -1:
+                print 'no id_col'
+            else:
+                print 'id_col is', headers2[id_col]
+                del headers2[id_col]
+
             with open(outcsv_name, 'wt') as outf:
                 outheaders = headers1[:new_loc] + headers2 + headers1[new_loc:]
                 cout = csv.writer(outf)
