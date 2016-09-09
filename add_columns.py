@@ -1,4 +1,5 @@
 import csv
+import smart_csv
 import sys
 
 
@@ -53,12 +54,12 @@ def add_csv_rows(incsv_name_base, incsv_name_new, outcsv_name, new_loc=-1, id_co
     new_loc = int(new_loc)
     id_col = int(id_col)
     with open(incsv_name_base) as inf1:
-        cin1 = csv.reader(inf1)
+        cin1, _, _ = smart_csv.csv_open(inf1)
         headers1 = cin1.next()
         if new_loc == -1:
             new_loc = len(headers1)
         with open(incsv_name_new) as inf2:
-            cin2 = csv.reader(inf2)
+            cin2, _, _ = smart_csv.csv_open(inf2)
             headers2 = cin2.next()
             if id_col == -1:
                 print 'no id_col'
