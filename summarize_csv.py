@@ -40,7 +40,8 @@ def kill_dot(x):
 
 
 def date2timestamp(arr):
-    return np.array([calendar.timegm(d.tolist().timetuple()) for d in arr], dtype='int64')
+    return np.array(
+        [calendar.timegm(d.tolist().timetuple()) for d in arr], dtype='int64')
 
 
 def num2date(x):
@@ -48,11 +49,11 @@ def num2date(x):
 
 
 class DateField:
-
     def __init__(self, name, size):
         self.name = name
-        self.arr = np.array(['2015-07-08 14:12:12.000' for _ in xrange(size)],
-                            dtype='datetime64[ms]')
+        self.arr = np.array(
+            ['2015-07-08 14:12:12.000' for _ in xrange(size)],
+            dtype='datetime64[ms]')
         self.idx = 0
         self.empties = 0
 
@@ -73,7 +74,6 @@ class DateField:
 
 
 class FloatField:
-
     def __init__(self, name, size):
         self.name = name
         self.arr = np.array(range(size), dtype='float64')
@@ -92,7 +92,6 @@ class FloatField:
 
 
 class IntField:
-
     def __init__(self, name, size):
         self.name = name
         self.arr = np.array(range(size), dtype='int64')
@@ -119,7 +118,6 @@ class IntField:
 
 
 class CatField:
-
     def __init__(self, name):
         self.name = name
         self.bag = collections.Counter()
@@ -128,11 +126,11 @@ class CatField:
         self.bag.update([x])
 
     def __repr__(self):
-        return '%s, %d, %s' % (self.name, len(self.bag), self.bag.most_common(10))
+        return '%s, %d, %s' % (self.name, len(self.bag),
+                               self.bag.most_common(10))
 
 
 class Field:
-
     def __init__(self, name):
         self.name = name
         self.empties = 0
@@ -219,10 +217,12 @@ class Field:
         return '%s: %s' % (self.name, ', '.join(s))
 
 
-def main(fname):
+def main(fname, setenc=None):
     i = 0
     with open(fname, 'rb') as f:
         c, enc, dialect = smart_csv.csv_open(f)
+        if setenc:
+            enc = setenc
         headers = c.next()
         fields = [Field(h.decode(enc).encode('utf8')) for h in headers[1:]]
 
@@ -255,5 +255,9 @@ def main(fname):
         for tfield in tfields:
             print tfield
 
+
 if __name__ == '__main__':
-    main(sys.argv[1])
+    enc = None
+    if len(sys.argv) == 3:
+        enc = sys.argv[2]
+    main(sys.argv[1], enc)
